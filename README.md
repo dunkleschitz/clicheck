@@ -46,6 +46,42 @@ closed, no leaked tracebacks. Run it in CI as
 Companion to `doccover` (which checks docs ↔ CLI surface): clicheck
 checks binary ↔ universal contract, no docs needed.
 
+## Examples
+
+```sh
+# Gate a release in CI: fail the pipeline on contract violations
+clicheck ./mytool || exit 1
+
+# Strict mode: usage errors must exit 2, not just nonzero
+clicheck --strict ./mytool
+
+# Check a command that needs fixed leading args
+clicheck -- python3 scripts/deploy.py --checks help_exit,version_exit,noargs_finishes
+
+# Machine-readable output for a dashboard
+clicheck --json ./mytool | jq '.failures'
+
+# What a failure looks like (a CLI whose --help exits 1):
+# [FAIL] help_exit  --help exits 0 — rc=1
+# 14 passed, 0 warnings, 1 failures
+```
+
+## Limitations
+
+- clicheck judges the *contract*, not correctness: a `--help` that exits
+  0 with plausible-looking but wrong text passes.
+- The bare no-args probe runs the command's default behavior with stdin
+  closed. Most CLIs print help or a usage error; a CLI whose default
+  action is destructive or long-running should not be probed this way —
+  use `--checks` to skip `noargs_finishes`.
+- `usage_exit_2` (exit 2 on usage errors) is a convention, not a law:
+  argparse/click follow it, many CLIs exit 1. That's why it's strict-only.
+- Version "parseability" is a heuristic (`\d+\.\d+` in the first line),
+  and `-h`/ANSI/name-mention checks are warn-level on purpose: real
+  tools vary, and a contract checker that cries wolf is worse than none.
+- Probes kill the direct child on timeout; grandchildren that detach
+  could linger — another reason to only probe commands you trust.
+
 ## Trust and safety
 
 clicheck **executes** the command with benign inputs only (`--help`,
