@@ -101,22 +101,7 @@ Fixtures cover: a contract-honoring CLI, broken `--version`, leaked
 tracebacks, a bare-run hang, help-on-stderr, exit-1-on-usage (lenient OK,
 strict FAIL), and ANSI in piped help.
 
-## Pre-publish checklist
-
-Per the project charter, nothing ships publicly until the maintainer
-approves the publishing account/org and the license. Before
-first publication:
-
-1. **Secrets hygiene** — run a secrets scan over the repo and its history
-   (`gitleaks detect --source .` or `trufflehog git file://.`), resolve
-   every hit, and grep once more for obvious keys/tokens by hand.
-2. **History review** — read `git log` and the full diff end-to-end; no
-   credentials, private paths, or personal data may be committed.
-3. **License** — replace the TBD notice with the maintainer-approved
-   LICENSE file.
-4. **Maintainer approval** — The maintainer signs off on this project's first
-   public publication.
 
 ## License
 
-TBD — pending maintainer approval (MIT proposed).
+MIT — see [LICENSE](LICENSE).
