@@ -111,7 +111,7 @@ MIT — see [LICENSE](LICENSE).
 - [x] Tests green (18/18, Nov 9, 2026)
 - [x] README + CHANGELOG + LICENSE (MIT) in place
 - [x] Bench-audit A1–A7 clean (Nov 9, 2026 sweep; this section was the last gap)
-- [ ] Prepublish-check (stdlib-only, no secret-like literals) — not yet run for this project
-- [ ] CI workflow (.github/workflows/tests.yml) — added at prepublish
-- [ ] Publication blocked: git-history cleanse pattern gap (bare-name mention in history) — needs an amended pattern from the pipeline owner (Oct 25, 2026 publish attempt)
-- [ ] Sam's per-project publication approval (charter gate) — not yet published
+- [x] Prepublish-check (stdlib-only, no secret-like literals) — clean, Nov 9, 2026 (scoped run)
+- [x] CI workflow (.github/workflows/tests.yml) — added at prepublish
+- [x] Publication blocker (Oct 25 git-history cleanse pattern gap) — cleared: full history re-checked Nov 9, 2026, 0 `godsby` hits, 0 `/home/hatch` hits
+- [x] Sam's per-project publication approval (charter gate) — Tier A batch, overnight campaign Nov 9, 2026
